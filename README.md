@@ -37,5 +37,5 @@ with:
   image-path: 'path/to/image.tar.gz'
   username: 'dafni-username'
   password: 'password123!'
-  version-message: 'I'm uploading my Model automatically!'
+  version-message: 'Im uploading my Model automatically!'
   parent-model: '62774935-f7d3-40b0-aa69-7faac8c800c7'
