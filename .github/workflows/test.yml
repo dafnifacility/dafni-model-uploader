@@ -6,7 +6,7 @@ jobs:
     name: A job to test model uploader
     steps:
     - name: Checkout
-        uses: actions/checkout@v2
+      uses: actions/checkout@v2
     - name: test step
       uses: ./
       with:
