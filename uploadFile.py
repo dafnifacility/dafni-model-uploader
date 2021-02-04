@@ -22,7 +22,6 @@ parent_model = args[5] if len(args) > 5 else None
 
 print("Logging in to DAFNI")
 jwt = login(username, password)
-print(jwt)
 
 print("Validate Model definition")
 valid, errors = validate_model_definition(jwt, definition_path)
