@@ -13,32 +13,19 @@ from dafni_cli.nims import (
 )
 
 args = sys.argv[1:]
-print(args)
-
-parser = argparse.ArgumentParser(description="Uploading Model to DAFNI")
-parser.add_argument(
-    "--model-definition", help="The path to the model definition file", required=True
-)
-parser.add_argument("--image", help="The path to the image file", required=True)
-parser.add_argument("--username", help="Your DAFNI username", required=True)
-parser.add_argument("--password", help="Your DAFNI password", required=True)
-parser.add_argument(
-    "--version-message",
-    help="A message to help others understand what you changed in this version",
-    required=True,
-)
-parser.add_argument(
-    "--parent-model", help="The ID for the parent Model to tie your Model to"
-)
-
-args = parser.parse_args()
+definition_path = Path(args[0])
+image_path = Path(args[1])
+username = args[2]
+password = args[3]
+version_message = args[4]
+parent_model = args[5] if len(args) > 5 else None
 
 print("Logging in to DAFNI")
-jwt = login(args.username, args.password)
+jwt = login(username, password)
 print(jwt)
 
 print("Validate Model definition")
-valid, errors = validate_model_definition(jwt, args.model_definition)
+valid, errors = validate_model_definition(jwt, definition_path)
 if not valid:
     print("Definition validation failed with the following errors:", errors)
     exit
@@ -49,12 +36,12 @@ definition_url = urls["definition"]
 image_url = urls["image"]
 
 print("Upload Model definition")
-upload_file_to_minio(jwt, definition_url, args.model_definition)
+upload_file_to_minio(jwt, definition_url, definition_path)
 print("Upload image")
-upload_file_to_minio(jwt, image_url, args.image)
+upload_file_to_minio(jwt, image_url, image_path)
 
 print("Start Model ingest")
-if args.parent_model == None:
-    start_model_ingest(jwt, upload_id, args.version_message)
+if parent_model == None:
+    start_model_ingest(jwt, upload_id, version_message)
 else:
-    start_model_version_ingest(jwt, args.parent_model, upload_id, args.version_message)
+    start_model_version_ingest(jwt, parent_model, upload_id, version_message)
