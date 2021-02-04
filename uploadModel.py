@@ -40,7 +40,7 @@ print("Upload image")
 upload_file_to_minio(jwt, image_url, image_path)
 
 print("Start Model ingest")
-if parent_model == None or parent_model == "":
+if not parent_model:
     start_model_ingest(jwt, upload_id, version_message)
 else:
     start_model_version_ingest(jwt, parent_model, upload_id, version_message)
