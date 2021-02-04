@@ -19,7 +19,6 @@ username = args[2]
 password = args[3]
 version_message = args[4]
 parent_model = args[5] if len(args) > 5 else None
-print(definition_path, image_path, username, password, version_message, parent_model)
 
 print("Logging in to DAFNI")
 jwt = login(username, password)
