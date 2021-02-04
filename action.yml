@@ -1,0 +1,32 @@
+name: 'DAFNI Model Uploader'
+description: 'An action to enable the automatic uploading of Models to DAFNI'
+inputs:
+  definition-path:  
+    description: 'Path to your Model Definition file.'
+    required: true
+  image-path: 
+    description: 'Path to your Model's compressed Docker image file.'
+    required: true
+  username:  
+    description: 'Your DAFNI username.'
+    required: true
+  password:  
+    description: 'Your DAFNI password.'
+    required: true
+  version-message:  
+    description: 'A version message to use for your Model version.'
+    required: true
+    default: 'Uploaded from DAFNI Model Uploader'
+  parent-model:
+    description: 'The ID of the parent Model on DAFNI you want to associate the new version with. Optional - if not specified a new Model will be created on DAFNI.'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.definition-path }}
+    - ${{ inputs.image-path }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.version-message }}
+    - ${{ inputs.parent-model }}
