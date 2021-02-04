@@ -6,7 +6,7 @@ jobs:
     name: A job to say hello
     steps:
     - name: test step
-      uses: actions/dafni-model-uploader@v1
+      uses: actions/dafni-facility/dafni-model-uploader@v1
       with:
         definition-path: 'path/to/file'
         image-path: 'image/path/to'
