@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+  test-dafni-action:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+    - name: test step
+      with:
+        definition-path: 'path/to/file'
+        image-path: 'image/path/to'
+        username: 'username'
+        password: 'password'
+        version-message: 'version message'
+        parent-model: 'parent model this is a uuid :)'
