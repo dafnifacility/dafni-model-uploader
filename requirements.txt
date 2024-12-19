@@ -1,4 +1,4 @@
 setuptools==49.2.1
-requests==2.25.1
+requests==2.31.0
 pathlib==1.0.1
-dafni-cli-dafni-facility==0.0.9
+dafni-cli==1.1.0
