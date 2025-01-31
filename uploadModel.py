@@ -19,7 +19,6 @@ os.environ["DAFNI_PASSWORD"] = password
 
 print("Logging in to DAFNI")
 session = DAFNISession()
-session.attempt_login()
 
 if session is None:
     sys.exit(1)
