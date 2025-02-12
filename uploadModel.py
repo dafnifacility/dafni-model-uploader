@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -13,8 +14,11 @@ password = args[3]
 version_message = args[4]
 parent_model = args[5] if len(args) > 5 else None
 
+os.environ["DAFNI_USERNAME"] = username
+os.environ["DAFNI_PASSWORD"] = password
+
 print("Logging in to DAFNI")
-session = DAFNISession().login(username, password)
+session = DAFNISession()
 
 if session is None:
     sys.exit(1)
